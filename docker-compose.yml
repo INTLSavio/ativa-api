@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  api-ativa:
+    image: bitnami/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=savio
+      - POSTGRESQL_PASSWORD=savio
+      - POSTGRESQL_DATABASE=apiativa

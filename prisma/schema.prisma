@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Scheduling {
+  id      String   @id @default(uuid())
+  carName String
+  name    String
+  email   String
+  phone   String
+  date    DateTime @db.Timestamptz
+
+  car    Car    @relation(fields: [car_id], references: [id])
+  car_id String
+
+  @@map("schedulings")
+}
+
+model Car {
+  id         String       @id @default(uuid())
+  nome       String
+  img        String
+  desc       String
+  preco      String
+  ano        String
+  km         Int
+  local      String
+  Scheduling Scheduling[]
+
+  @@map("cars")
+}
